@@ -12,7 +12,7 @@ data class TileW(val width : Int, val height : Int, val byteArray: ByteArray?) {
         return Tile(width, height, byteArray)
     }
 
-    fun toHMSTile() : com.huawei.hms.maps.model.Tile {
-        return com.huawei.hms.maps.model.Tile(width, height, byteArray)
+    fun toHMSTile() : com.huawei.map.mapapi.model.Tile {
+        return com.huawei.map.mapapi.model.Tile(width, height, byteArray)
     }
 }

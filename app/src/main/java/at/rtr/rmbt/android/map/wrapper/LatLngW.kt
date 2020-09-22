@@ -6,5 +6,5 @@ data class LatLngW(val latitude : Double, val longitude : Double) {
 
     fun toGMSLatLng() = LatLng(latitude, longitude)
 
-    fun toHMSLatLng() = com.huawei.hms.maps.model.LatLng(latitude, longitude)
+    fun toHMSLatLng() = com.huawei.map.mapapi.model.LatLng(latitude, longitude)
 }

@@ -3,7 +3,7 @@ package at.rtr.rmbt.android.map.wrapper
 import android.content.Context
 import androidx.annotation.DrawableRes
 import at.rtr.rmbt.android.util.iconFromVector
-import com.huawei.hms.maps.model.Marker
+import com.huawei.map.mapapi.model.Marker
 
 interface MarkerWrapper {
 

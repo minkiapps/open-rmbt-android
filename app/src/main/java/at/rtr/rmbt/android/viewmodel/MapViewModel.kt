@@ -13,8 +13,6 @@ import at.specure.data.repository.MapRepository
 import at.specure.location.LocationInfo
 import at.specure.location.LocationState
 import at.specure.location.LocationWatcher
-import com.huawei.hms.maps.model.Tile
-import com.huawei.hms.maps.model.TileProvider
 import javax.inject.Inject
 
 class MapViewModel @Inject constructor(

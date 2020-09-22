@@ -1,10 +1,12 @@
 package at.rtr.rmbt.android.map.wrapper
 
+import com.huawei.map.mapapi.model.TileOverlay
+
 interface TileOverlayWrapper {
     fun remove()
 }
 
-class HMSOverlayWrapper(private val tileOverlay: com.huawei.hms.maps.model.TileOverlay) : TileOverlayWrapper {
+class HMSOverlayWrapper(private val tileOverlay: TileOverlay) : TileOverlayWrapper {
     override fun remove() {
         tileOverlay.remove()
     }

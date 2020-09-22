@@ -26,7 +26,7 @@ class MapViewWrapperImpl @JvmOverloads constructor(
                 GoogleMapViewWrapper(mapView)
             }
             context.isHmsAvailable() -> {
-                val mapView = com.huawei.hms.maps.MapView(context)
+                val mapView = com.huawei.map.mapapi.MapView(context)
                 addView(mapView, LayoutParams(MATCH_PARENT, MATCH_PARENT))
                 HuaweiMapViewWrapper(mapView)
             }

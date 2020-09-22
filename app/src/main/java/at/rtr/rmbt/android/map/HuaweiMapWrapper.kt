@@ -4,14 +4,15 @@ import android.content.Context
 import at.rmbt.client.control.data.MapStyleType
 import at.rtr.rmbt.android.map.wrapper.*
 import at.rtr.rmbt.android.util.iconFromVector
-import com.huawei.hms.maps.CameraUpdateFactory
-import com.huawei.hms.maps.HuaweiMap
-import com.huawei.hms.maps.model.MarkerOptions
-import com.huawei.hms.maps.model.TileOverlayOptions
-import com.huawei.hms.maps.model.TileProvider.NO_TILE
+import com.huawei.map.mapapi.CameraUpdateFactory
+import com.huawei.map.mapapi.HWMap
+import com.huawei.map.mapapi.model.CircleOptions
+import com.huawei.map.mapapi.model.MarkerOptions
+import com.huawei.map.mapapi.model.TileOverlayOptions
+import com.huawei.map.mapapi.model.TileProvider.NO_TILE
 import timber.log.Timber
 
-class HuaweiMapWrapper(private val huaweiMap : HuaweiMap) : MapWrapper {
+class HuaweiMapWrapper(private val huaweiMap: HWMap) : MapWrapper {
 
     override fun moveCamera(latLngW: LatLngW, zoom: Float) {
         huaweiMap.moveCamera(CameraUpdateFactory.newLatLngZoom(latLngW.toHMSLatLng(), zoom))
@@ -28,8 +29,8 @@ class HuaweiMapWrapper(private val huaweiMap : HuaweiMap) : MapWrapper {
     override fun addTileOverlay(tileWProvider: TileWrapperProvider): TileOverlayWrapper {
         val overlay = huaweiMap.addTileOverlay(TileOverlayOptions().tileProvider { x, y, zoom ->
             return@tileProvider try {
-                tileWProvider.getTileW(x,y,zoom).toHMSTile()
-            } catch (e : Exception) {
+                tileWProvider.getTileW(x, y, zoom).toHMSTile()
+            } catch (e: Exception) {
                 Timber.e(e, "Failed to load tile")
                 NO_TILE
             }
@@ -44,10 +45,11 @@ class HuaweiMapWrapper(private val huaweiMap : HuaweiMap) : MapWrapper {
         anchorV: Float,
         iconId: Int
     ): MarkerWrapper {
-        val marker = huaweiMap.addMarker(MarkerOptions()
-            .position(latLngW.toHMSLatLng())
-            .anchorMarker(anchorU, anchorV)
-            .iconFromVector(context, iconId)
+        val marker = huaweiMap.addMarker(
+            MarkerOptions()
+                .position(latLngW.toHMSLatLng())
+                .anchor(anchorU, anchorV)
+                .iconFromVector(context, iconId)
         )
         return HMSMarker(marker)
     }
@@ -75,10 +77,10 @@ class HuaweiMapWrapper(private val huaweiMap : HuaweiMap) : MapWrapper {
     }
 
     override fun setMapStyleType(style: MapStyleType) {
-        huaweiMap.mapType = when(style) {
-            MapStyleType.STANDARD -> HuaweiMap.MAP_TYPE_NORMAL
-            MapStyleType.SATELLITE -> HuaweiMap.MAP_TYPE_SATELLITE
-            MapStyleType.HYBRID -> HuaweiMap.MAP_TYPE_HYBRID
+        huaweiMap.mapType = when (style) {
+            MapStyleType.STANDARD -> HWMap.MAP_TYPE_NORMAL
+            MapStyleType.SATELLITE -> HWMap.MAP_TYPE_SATELLITE
+            MapStyleType.HYBRID -> HWMap.MAP_TYPE_HYBRID
         }
     }
 
@@ -90,12 +92,12 @@ class HuaweiMapWrapper(private val huaweiMap : HuaweiMap) : MapWrapper {
         circleRadius: Double
     ) {
         huaweiMap.addCircle(
-            com.huawei.hms.maps.model.CircleOptions()
-            .center(latLngW.toHMSLatLng())
-            .fillColor(fillColor)
-            .strokeColor(strokeColor)
-            .strokeWidth(strokeWidth)
-            .radius(circleRadius)
+            CircleOptions()
+                .center(latLngW.toHMSLatLng())
+                .fillColor(fillColor)
+                .strokeColor(strokeColor)
+                .strokeWidth(strokeWidth)
+                .radius(circleRadius)
         )
     }
 

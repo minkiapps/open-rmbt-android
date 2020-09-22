@@ -15,6 +15,12 @@ applyPrivate "signing/signing-config.gradle"
 applyPrivate "app/analytics.gradle"
 applyPrivate "app/flavor-config.gradle"
 
+repositories {
+    flatDir {
+        dirs 'src/main/libs'
+    }
+}
+
 android {
 
     compileSdkVersion config.targetSdkVersion
@@ -99,7 +105,12 @@ dependencies {
 
     debugImplementation "com.facebook.stetho:stetho:$versions.stetho"
 
-    implementation 'com.huawei.hms:maps:5.0.1.301'
+    implementation(name: 'mapsdk', ext: 'aar')
+    implementation "com.huawei.hms:dynamic-api:1.0.13.303"
+    implementation "com.huawei.hms:device:5.0.0.300"
+    implementation "com.huawei.hms:availableupdate:5.0.0.300"
+    implementation "com.huawei.hms:base:5.0.0.300"
+
     implementation 'com.huawei.agconnect:agconnect-core:1.4.0.300'
 
     testImplementation "junit:junit:$versions.junit"

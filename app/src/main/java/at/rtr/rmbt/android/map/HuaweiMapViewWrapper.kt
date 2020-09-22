@@ -4,7 +4,7 @@ import android.os.Bundle
 import at.rtr.rmbt.android.map.wrapper.EmptyMapWrapper
 import at.rtr.rmbt.android.map.wrapper.MapViewWrapper
 import at.rtr.rmbt.android.map.wrapper.MapWrapper
-import com.huawei.hms.maps.MapView
+import com.huawei.map.mapapi.MapView
 
 class HuaweiMapViewWrapper(private val mapView: MapView) : MapViewWrapper {
 
@@ -54,7 +54,7 @@ class HuaweiMapViewWrapper(private val mapView: MapView) : MapViewWrapper {
                 isMyLocationButtonEnabled = false
                 isZoomControlsEnabled = false
                 isCompassEnabled = false
-                isIndoorLevelPickerEnabled = false
+                setIndoorLevelPickerEnabled(false)
                 isTiltGesturesEnabled = false
             }
             wrapper = HuaweiMapWrapper(it)
